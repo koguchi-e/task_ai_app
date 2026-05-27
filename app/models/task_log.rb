@@ -1,0 +1,2 @@
+class TaskLog < ApplicationRecord
+end

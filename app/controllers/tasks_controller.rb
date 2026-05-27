@@ -72,6 +72,13 @@ class TasksController < ApplicationController
         "text"
       )
     
+    TaskLog.create(
+      situation: params[:situation],
+      problem: params[:problem],
+      goal: params[:goal],
+      result: @result
+    )
+
     Rails.logger.debug @result
     
     render :result
