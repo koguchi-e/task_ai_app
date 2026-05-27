@@ -1,0 +1,18 @@
+<h1>入力画面</h1>
+<%= form_with url: tasks_path, data: { turbo: false } do |f| %>
+  <div>
+    <%= f.label :situation, "状況" %><br>
+    <%= f.text_area :situation, style: "width: 50%; height: 100px;" %>
+  </div>
+  <div>
+    <%= f.label :problem, "問題" %><br>
+    <%= f.text_area :problem, style: "width: 50%; height: 100px;" %>
+  </div>
+  <div>
+    <%= f.label :goal, "目標" %><br>
+    <%= f.text_area :goal, style: "width: 50%; height: 100px;" %>
+  </div>
+  <div>
+    <%= f.submit "タスクを作成" %>
+  </div>
+<% end %>
