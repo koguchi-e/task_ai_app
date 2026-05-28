@@ -26,7 +26,7 @@ class TasksController < ApplicationController
       - 「学ぶ」「理解する」「動くではなく具体的に何をすべきかを書く
       - 簡単で優先度の高い順に出す
       - 「今すぐやること」は出力しない
-      - タスクはMarkdown形式の番号付きリストで出力してください。「.」の後は半角空欄を１つだけ入れてください。
+      - タスクは1つずつ改行して出力してください
 
       入力形式：
       状況:
@@ -37,13 +37,6 @@ class TasksController < ApplicationController
 
       目標:
       #{params[:goal]}
-
-      出力形式：
-      1.
-      2.
-      3.
-      4.
-      5.
     PROMPT
 
     response = Faraday.post(url) do |req|
@@ -79,6 +72,9 @@ class TasksController < ApplicationController
       goal: params[:goal],
       result: @result
     )
+
+    puts @result.class
+    @tasks = @result.to_s.split("\n")
 
     Rails.logger.debug @result
     

@@ -1,0 +1,46 @@
+<script>
+  function copyResult(){
+    const text =
+      document.getElementById("result-text").innerText
+
+    navigator.clipboard.writeText(text)
+    alert("コピーしました")
+  }
+</script>
+<script src="https://kit.fontawesome.com/38dc52f0f7.js" crossorigin="anonymous"></script>
+<style>
+  #result-text{
+    background: #333333;
+    color: #FFFFFF;
+    padding: 2em;
+    border-radius: 5px;
+    display: block;
+    width: 80%;
+    position: relative;
+  }
+  #copy-button-codeblock {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #808080;
+    color: #FFFFFF;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #copy-button-codeblock:hover {
+    background: #666666;
+    color: #F2F2F2;
+  }
+</style>
+
+<h2>コピペ用</h2>
+<pre id=result-text>
+  <button id="copy-button-codeblock" onclick="copyResult()">
+    <i class="fa-solid fa-copy"></i>
+  </button>
+  <p class="result-tasks"><%= @result %></p>
+</pre>

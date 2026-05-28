@@ -1,50 +1,29 @@
-<script>
-  function copyResult(){
-    const text =
-      document.getElementById("result-text").innerText
-
-    navigator.clipboard.writeText(text)
-    alert("コピーしました")
-  }
-</script>
-<script src="https://kit.fontawesome.com/38dc52f0f7.js" crossorigin="anonymous"></script>
 <style>
-  #result-text{
-    background: #333333;
-    color: #FFFFFF;
-    padding: 2em;
-    border-radius: 5px;
-    display: block;
-    width: 80%;
-    position: relative;
-  }
-  #copy-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: #808080;
-    color: #FFFFFF;
-    width: 50px;
-    height: 50px;
-    margin-bottom: 1em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  #copy-button:hover {
-    background: #666666;
-    color: #F2F2F2;
-  }
   .result-tasks {
     font-size: 15px;
+  }
+
+  #sortable-list {
+    width: 300px;
+  }
+
+  #sortable-list li {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background: white;
+    cursor: grab;
   }
 </style>
 
 <h1>結果</h1>
 
-<pre id=result-text>
-  <button id="copy-button" onclick="copyResult()">
-    <i class="fa-solid fa-copy"></i>
-  </button>
-  <p class="result-tasks"><%= @result %></p>
-</pre>
+<ol id="sortable-list">
+  <% @tasks.each do |task| %>
+    <li class="task-item"><%= task %></li>
+  <% end %>
+</ol>
+
+<button id="copy-button">
+  Markdownコピー
+</button>
