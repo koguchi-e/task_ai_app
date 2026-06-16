@@ -18,12 +18,68 @@
 
 <h1>結果</h1>
 
-<ol id="sortable-list">
-  <% @tasks.each do |task| %>
-    <li class="task-item"><%= task %></li>
-  <% end %>
-</ol>
+<div>
+  <h2>Gemini</h2>
 
-<button id="copy-button">
-  Markdownコピー
-</button>
+  <p>
+    応答時間:
+    <%= @gemini_elapsed.round(2) %> 秒
+  </p>
+
+  <ol id="sortable-list">
+    <% @tasks.each do |task| %>
+      <li class="task-item">
+        <%= task %>
+      </li>
+    <% end %>
+  </ol>
+</div>
+
+<div>
+  <h2>GPT-4o mini</h2>
+
+  <p>
+    応答時間:
+    <%= @gpt_elapsed.round(2) %> 秒
+  </p>
+
+  <ol  id="sortable-list">
+    <% @gpt_tasks.each do |task| %>
+      <li class="task-item">
+        <%= task %>
+      </li>
+    <% end %>
+  </ol>
+</div>
+
+<div>
+  <h2>Claude</h2>
+
+  <p>
+    応答時間:
+    <%= @claude_elapsed.round(2) %> 秒
+  </p>
+
+  <ol  id="sortable-list">
+    <% @claude_tasks.each do |task| %>
+      <li class="task-item">
+        <%= task %>
+      </li>
+    <% end %>
+  </ol>
+</div>
+
+
+<%= form_with url: download_json_tasks_path, method: :post, data: { turbo: false } do %>
+  <%= hidden_field_tag :situation, params[:situation] %>
+  <%= hidden_field_tag :problem, params[:problem] %>
+  <%= hidden_field_tag :goal, params[:goal] %>
+  <%= hidden_field_tag :gemini_result, @result %>
+  <%= hidden_field_tag :gpt_result, @gpt_result %>
+  <%= hidden_field_tag :claude_result, @claude_result %>
+  <%= hidden_field_tag :gemini_elapsed, @gemini_elapsed %>
+  <%= hidden_field_tag :gpt_elapsed, @gpt_elapsed %>
+  <%= hidden_field_tag :claude_elapsed, @claude_elapsed %>
+
+  <%= submit_tag "JSONダウンロード" %>
+<% end %>

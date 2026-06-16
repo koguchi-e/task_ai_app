@@ -67,3 +67,6 @@ end
 
 gem 'faraday'
 gem 'dotenv-rails'
+
+gem 'ruby-openai'
+gem 'anthropic'
